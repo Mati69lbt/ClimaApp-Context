@@ -9,3 +9,5 @@ Currently, two official plugins are available:
 
 
 API key: 83532ba3c814d4a7e044b0731ce6fd88# ClimaApp-Context
+
+
