@@ -4,13 +4,21 @@ import Loading from "./Loading";
 import Resultado from "./Resultado";
 
 const AppClima = () => {
-  const { resultado, cargando } = useClima();
+  const { resultado, cargando, sinResultados } = useClima();
 
   return (
     <>
       <main className="dos-columnas">
         <Formulario />
-        {cargando ? <Loading /> : resultado.name && <Resultado />}
+        {cargando ? (
+          <Loading />
+        ) : resultado?.name ? (
+          <Resultado />
+        ) : sinResultados ? (
+          <p>{sinResultados}</p>
+        ) : (
+          <p>El Clima se va a mostrar aquí</p>
+        )}
       </main>
     </>
   );

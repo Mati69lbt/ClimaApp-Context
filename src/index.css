@@ -202,9 +202,18 @@ input[type="submit"]:hover {
   vertical-align: super;
 }
 
-.temp_min_max {
-  margin-top: 2rem;
+.primerfila,
+.temp_min_max,
+.tercerfila {
+  margin-top: 1rem;
   display: flex;
   justify-content: center;
   gap: 2rem;
+}
+
+.img {
+  display: inline-flex;
+  vertical-align: super;
+  font-size: 1rem;
+  gap: -1rem;
 }

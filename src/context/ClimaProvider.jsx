@@ -13,6 +13,10 @@ const ClimaProvider = ({ children }) => {
 
   const [cargando, setCargando] = useState(false);
 
+  const [sinResultados, setsinResultados] = useState(false);
+
+  const [prov, setProv] = useState({});
+
   const datosBusqueda = (e) => {
     setBusqueda({
       ...busqueda,
@@ -22,18 +26,20 @@ const ClimaProvider = ({ children }) => {
 
   const consultarClima = async (datos) => {
     setCargando(true);
+    setsinResultados(false);
     try {
       const appID = import.meta.env.VITE_API_KEY;
 
       const { ciudad, pais } = datos;
       const url = `http://api.openweathermap.org/geo/1.0/direct?q=${ciudad},${pais}&limit=1&appid=${appID}`;
       const { data } = await axios(url);
-      const { lat, lon, name, state } = data[0];
-      const urlCLima = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appID}`;
+      const { lat, lon, state } = data[0];
+      const urlCLima = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appID}&units=metric&lang=sp`;
       const { data: clima } = await axios(urlCLima);
       setResultado(clima);
+      setProv(state);
     } catch (error) {
-      console.log(error);
+      setsinResultados("No se encuentran ciudades con esa busqueda");
     } finally {
       setCargando(false);
     }
@@ -41,7 +47,15 @@ const ClimaProvider = ({ children }) => {
 
   return (
     <CLimaContext.Provider
-      value={{ busqueda, datosBusqueda, consultarClima, resultado, cargando }}
+      value={{
+        busqueda,
+        datosBusqueda,
+        consultarClima,
+        resultado,
+        cargando,
+        sinResultados,
+        prov,
+      }}
     >
       {children}
     </CLimaContext.Provider>

@@ -5,7 +5,7 @@ function App() {
   return (
     <ClimaProvider>
       <header>
-        <h1>Alertas Meteorológicas</h1>
+        <h1>Estado Del Tiempo...</h1>
       </header>
       <AppClima />
     </ClimaProvider>

@@ -14,6 +14,7 @@ const Formulario = () => {
       setAlerta("Debe llenar todos los campos");
       return;
     }
+    setAlerta("");
     consultarClima(busqueda);
   };
 
